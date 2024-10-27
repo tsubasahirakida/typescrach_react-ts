@@ -1,13 +1,22 @@
 import './ImageList.css';
 import React from 'react';
 import ImageCard from './ImageCard';
+import { ImageCardProps } from './ImageCard';
 
-const ImageList = (props) => {
+type Props = {
+  images: ImageCardProps[];
+  term: string;
+  page: number;
+  setPage: (page: number) => void;
+  onSearchSubmit: (term: string, page: number) => void;
+}
+
+const ImageList: React.FC<Props> = (props: Props) => {
   const images = props.images.map((image) => {
     return <ImageCard key={image.id} image={image} />;
    });
 
-   const handleScroll = (e) => {
+   const handleScroll = (e: any) => {
      const element = e.target;
      const { scrollHeight, scrollTop, clientHeight } = element;
         if (scrollHeight - scrollTop === clientHeight) {
