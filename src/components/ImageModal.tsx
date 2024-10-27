@@ -1,12 +1,20 @@
 import * as React from 'react';
 import { Modal } from 'react-bootstrap';
 import './ImageModal.css';
+import { ImageCardProps } from './ImageCard';
 
-const ImageModal = (props) => {
+type Props = {
+  image: ImageCardProps;
+  // ?はオプショナルな引数となる
+  size?: "sm" | "lg" | "xl" | undefined;
+  show: boolean;
+  onHide: () => void;
+}
+
+const ImageModal: React.FC<Props> = (props) => {
  return (
   <Modal
      {...props}
-      size="md"
       centered
       >
       <Modal.Body>
